@@ -1,0 +1,42 @@
+
+body{
+    background-color: #f0db99;
+}
+
+.jumbotron {
+    background-color: #f0db99;
+    font-family: 'Frijole', cursive;
+}
+
+.wrapper {
+    margin: 0 100px 0 100px;
+}
+
+.burger-img {
+    height: 150px;
+}
+
+.row{
+    width: auto;
+    margin: 0 auto;
+}
+
+li {
+    padding: 5px;
+    margin: 5px;
+    background: #faebd7;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.create-update-form {
+    padding: 5px;
+    margin: 5px;
+    background: aqua;
+}
+
+.form-group {
+    margin-bottom: 5px;
+}
