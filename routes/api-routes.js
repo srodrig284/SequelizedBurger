@@ -13,7 +13,7 @@ var db = require("../models");
 module.exports = function(app) {
 
     // GET route for getting all of the burgers
-    app.get("/api/burgers", function(req, res) {
+    app.get("/api/", function(req, res) {
         // findAll returns all entries for a table when used with no options
         db.Burger.findAll({}).then(function(dbBurger) {
             // We have access to the todos as an argument inside of the callback function
@@ -40,12 +40,12 @@ module.exports = function(app) {
     // req.params.id
     app.delete("/api/burgers/:id", function(req, res) {
         // We just have to specify which burger we want to destroy with "where"
-        db.Burgers.destroy({
+        db.Burger.destroy({
             where: {
                 id: req.params.id
             }
-        }).then(function(dbBurgers) {
-            res.json(dbBurgers);
+        }).then(function(dbBurger) {
+            res.json(dbBurger);
         });
 
     });
