@@ -5,6 +5,8 @@
 // Dependencies
 // =============================================================
 var path = require("path");
+// Requiring our models
+var db = require("../models");
 
 // Routes
 // =============================================================
@@ -14,13 +16,15 @@ module.exports = function(app) {
 
   // index route loads view.html
   app.get("/", function(req, res) {
-    console.log("display index");
-    res.sendFile(path.join(__dirname, "../views/main"));
-  });
-
-  // authors route loads author-manager.html
-  app.get("/burgers", function(req, res) {
-    res.sendFile(path.join(__dirname, "../views/index"));
+      // GET route for getting all of the burgers
+          db.Burger.findAll({}).then(function(dbBurger) {
+              // We have access to the todos as an argument inside of the callback function
+              var hbsObject = {
+                  burgers: dbBurger
+              };
+              console.log(hbsObject);
+              res.render("index", hbsObject);
+          });
   });
 
 };

@@ -13,7 +13,7 @@ var db = require("../models");
 module.exports = function(app) {
 
     // GET route for getting all of the burgers
-    app.get("/api/", function(req, res) {
+    app.get("/api/burgers", function(req, res) {
         // findAll returns all entries for a table when used with no options
         db.Burger.findAll({}).then(function(dbBurger) {
             // We have access to the todos as an argument inside of the callback function
@@ -22,7 +22,7 @@ module.exports = function(app) {
     });
 
     // POST route for saving a new burgers
-    app.post("/api/burgers", function(req, res) {
+    app.post("/api/addburger", function(req, res) {
         // create takes an argument of an object describing the item we want to
         // insert into our table. In this case we just we pass in an object with a text
         // and complete property (req.body)
