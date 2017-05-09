@@ -1,29 +1,47 @@
-// Import the ORM to create functions that will interact with the database.
-var orm = require("../config/orm.js");
+module.exports = function(sequelize, DataTypes) {
+    var Burger = sequelize.define("Burger", {
+        // Giving the burger model a name of type STRING
+        burger_name:
+        {
+            type:DataTypes.STRING,
+            notEmpty: true,
+            validate:
+                {
+                    len:
+                        {
+                            args: [1, 160],
+                            msg: "Please enter a Customer name."
+                        }
+                }
+        },
+        devoured:
+        {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
+        }
 
-var burger = {
-    all: function(cb) {
-        orm.all("burgers", function(res) {
-            cb(res);
-        });
     },
-    // The variables cols and vals are arrays.
-    create: function(cols, vals, cb) {
-        orm.create("burgers", cols, vals, function(res) {
-            cb(res);
-        });
-    },
-    update: function(objColVals, condition, cb) {
-        orm.update("burgers", objColVals, condition, function(res) {
-            cb(res);
-        });
-    },
-    delete: function(condition, cb) {
-        orm.delete("burgers", condition, function(res) {
-            cb(res);
-        });
-    }
+        // Here we'll pass a second "classMethods" object into the define method
+        // This is for any additional configuration we want to give our models
+        {
+            // We're saying that we want our Customers to have many Burgers
+            classMethods: {
+                associate: function (models)
+                {
+                    // Using additional options like CASCADE etc for demonstration
+                    // Can also simply do Task.belongsTo(models.User);
+                    Burger.belongsTo(models.Customer,
+                    {
+                        onDelete: "CASCADE",
+                        foreignKey:
+                            {
+                                allowNull: true
+                            }
+                    });
+                }
+            }
+        }
+    );
+    return Burger;
 };
-
-// Export the database functions for the controller (burgers_controller.js).
-module.exports = burger;
