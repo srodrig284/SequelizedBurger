@@ -33,9 +33,13 @@
         <form action="//api/update/{{this.id}}" method="POST">
           <input type="hidden" name="devoured" value="true">
 
-          <input name="customer" type="text" class="form-control" id="customer-input" placeholder="Customer Who Eats this burger"/>
+          <div class="form-group">
+          	<label for="category">Select Customer To Eat Burger:</label>
+            <select class="form-control" id="author" style="width: 300px"></select>
+          </div>
+
           <button class="btn btn-primary" type="submit">EAT THIS BURGER NOW!</button>
-          <hr>
+          
         </form>
         <form action="/api/delete/{{this.id}}" method="POST">
           <input type="hidden" name="id" value="{{this.id}}">
