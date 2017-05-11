@@ -11,77 +11,80 @@
             </div>
         </div>
     </div>
-<div class = "row">
-    <div class="col-xs-6">
-        <h3>Add a Burger</h3>
-        <form class="create-update-form" action="/api/addburger" method="POST">
-          <div class="form-group">
-            <label for="bn">Burger Name:</label>
-            <input type="text" id="bn" name="burgername" size="50">
-          </div>
-          <button class="btn btn-info type="submit">Add Burger</button>
-        </form>
+    <div class = "row">
+        <div class="col-xs-6">
+            <h3>Add a Burger</h3>
+            <form class="create-update-form" action="/api/addburger" method="POST">
+              <div class="form-group">
+                <label for="bn">Burger Name:</label>
+                <input type="text" id="bn" name="burgername" size="50">
+              </div>
+              <button class="btn btn-info type="submit">Add Burger</button>
+            </form>
+        </div>
+
+        <div class="col-xs-6">
+            <h3>Add a Customer</h3>
+            <form class="create-update-form" action="/api/addcustomer" method="POST">
+              <div class="form-group">
+                <label for="cn">Customer Name:</label>
+                <input type="text" id="cn" name="customername" size="50">
+              </div>
+              <button class="btn btn-info type="submit">Add Customer</button>
+            </form>
+        </div>
     </div>
 
-    <div class="col-xs-6">
-        <h3>Add a Customer</h3>
-        <form class="create-update-form" action="/api/addcustomer" method="POST">
-          <div class="form-group">
-            <label for="cn">Customer Name:</label>
-            <input type="text" id="cn" name="customername" size="50">
-          </div>
-          <button class="btn btn-info type="submit">Add Customer</button>
-        </form>
+    <div class = "row">
+        <div class="col-xs-6">
+        <h3>Burgers that are ready to be devoured!</h3>
+            <ul>
+              {{#each burgers}}
+                {{#unless this.devoured}}
+                  <div>
+                    <h3>{{this.id}}. {{this.burger_name}}</h3>
+
+                    <form action="//api/update/{{this.id}}" method="POST">
+                      <input type="hidden" name="devoured" value="true">
+
+                      <div class="form-group">
+                        <label for="category">Select Customer To Eat Burger:</label>
+                        <select class="form-control" id="customer" style="width: 300px"></select>
+                      </div>
+
+                      <button class="btn btn-primary" type="submit">EAT THIS BURGER NOW!</button>
+
+                    </form>
+                    <form action="/api/delete/{{this.id}}" method="POST">
+                      <input type="hidden" name="id" value="{{this.id}}">
+                      <button class="btn btn-danger" type="submit">DELETE this burger!</button>
+                    </form>
+                  </div>
+                {{/unless}}
+              {{/each}}
+            </ul>
+        </div>
+
+        <div class="col-xs-6">
+            <h3>Burgers that have been devoured!</h3>
+            <ul>
+              {{#each burgers}}
+                {{#if this.devoured}}
+                  <li>
+                    {{this.id}}. {{this.burger_name}}
+
+                    <form action="/api/update/{{this.id}}" method="POST">
+                      <input type="hidden" name="devoured" value="false">
+                      <button class="btn btn-primary type="submit">PUT BURGER BACK ON MENU!</button>
+                    </form>
+                    <form action="/api/delete/{{this.id}}" method="POST">
+                      <input type="hidden" name="id" value="{{this.id}}">
+                      <button class="btn btn-danger" type="submit">DELETE this burger!</button>
+                    </form>
+                  </li>
+                {{/if}}
+              {{/each}}
+            </ul>
+        </div>
     </div>
-</div>
-
-<h3>Burgers that are ready to be devoured!</h3>
-<ul>
-  {{#each burgers}}
-    {{#unless this.devoured}}
-      <div>
-        <h3>{{this.id}}. {{this.burger_name}}</h3>
-
-        <form action="//api/update/{{this.id}}" method="POST">
-          <input type="hidden" name="devoured" value="true">
-
-          <div class="form-group">
-          	<label for="category">Select Customer To Eat Burger:</label>
-            <select class="form-control" id="author" style="width: 300px"></select>
-          </div>
-
-          <button class="btn btn-primary" type="submit">EAT THIS BURGER NOW!</button>
-
-        </form>
-        <form action="/api/delete/{{this.id}}" method="POST">
-          <input type="hidden" name="id" value="{{this.id}}">
-          <button class="btn btn-danger" type="submit">DELETE this burger!</button>
-        </form>
-      </div>
-    {{/unless}}
-  {{/each}}
-</ul>
-
-<h3>Burgers that have been devoured!</h3>
-
-<ul>
-  {{#each burgers}}
-    {{#if this.devoured}}
-      <li>
-        {{this.id}}. {{this.burger_name}}
-
-        <form action="/api/update/{{this.id}}" method="POST">
-          <input type="hidden" name="devoured" value="false">
-          <button class="btn btn-primary type="submit">PUT BURGER BACK ON MENU!</button>
-        </form>
-        <form action="/api/delete/{{this.id}}" method="POST">
-          <input type="hidden" name="id" value="{{this.id}}">
-          <button class="btn btn-danger" type="submit">DELETE this burger!</button>
-        </form>
-      </li>
-    {{/if}}
-  {{/each}}
-</ul>
-
-
 </div>
