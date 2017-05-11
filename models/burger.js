@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
                     len:
                         {
                             args: [1, 160],
-                            msg: "Please enter a Customer name."
+                            msg: "Please enter a Burger name."
                         }
                 }
         },

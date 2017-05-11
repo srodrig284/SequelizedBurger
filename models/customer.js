@@ -4,7 +4,7 @@ module.exports = function(sequelize, DataTypes) {
         customer_name:
         {
             type:DataTypes.STRING,
-            notEmpty: true,
+            allowNull: false,
             validate:
             {
                 len:

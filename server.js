@@ -6,7 +6,7 @@
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
-var methodOverride = require("method-override");
+//var methodOverride = require("method-override");
 
 // Sets up the Express App
 // =============================================================
@@ -28,7 +28,7 @@ app.use(express.static("./public"));
 
 
 // Override with POST having ?_method=PUT
-app.use(methodOverride("_method"));
+//app.use(methodOverride("_method"));
 
 // Set Handlebars.
 var exphbs = require("express-handlebars");
@@ -41,7 +41,7 @@ require("./routes/api-routes.js")(app);
 require("./routes/html-routes.js")(app);
 
 // Syncing our sequelize models and then starting our express app
-db.sequelize.sync({ force: false }).then(function() {
+db.sequelize.sync({ force: true }).then(function() {
     app.listen(PORT, function() {
         console.log("App listening on PORT " + PORT);
     });
