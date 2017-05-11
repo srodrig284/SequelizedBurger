@@ -12,17 +12,30 @@
         </div>
     </div>
 
+<h3>Add a Burger</h3>
+<form class="create-update-form" action="/api/addburger" method="POST">
 
-<h2>Burgers that are ready to be devoured!</h2>
+  <div class="form-group">
+    <label for="bn">Burger Name:</label>
+    <input type="text" id="bn" name="name" size="50">
+  </div>
+
+  <button class="btn btn-info type="submit">Add Burger</button>
+</form>
+
+<h3>Burgers that are ready to be devoured!</h3>
 <ul>
   {{#each burgers}}
     {{#unless this.devoured}}
       <li>
-        {{this.id}}. {{this.burger_name}}
+        <h3>{{this.id}}. {{this.burger_name}}</h3>
 
         <form action="//api/update/{{this.id}}" method="POST">
           <input type="hidden" name="devoured" value="true">
+
+          <input name="customer" type="text" class="form-control" id="customer-input" placeholder="Customer Who Eats this burger"/>
           <button class="btn btn-primary" type="submit">EAT THIS BURGER NOW!</button>
+          <hr>
         </form>
         <form action="/api/delete/{{this.id}}" method="POST">
           <input type="hidden" name="id" value="{{this.id}}">
@@ -33,7 +46,7 @@
   {{/each}}
 </ul>
 
-<h2>Burgers that have been devoured!</h2>
+<h3>Burgers that have been devoured!</h3>
 
 <ul>
   {{#each burgers}}
@@ -54,14 +67,5 @@
   {{/each}}
 </ul>
 
-<h2>Add a Burger</h2>
-<form class="create-update-form" action="/api/addburger" method="POST">
 
-  <div class="form-group">
-    <label for="bn">Burger Name:</label>
-    <input type="text" id="bn" name="name">
-  </div>
-
-  <button class="btn btn-info type="submit">Add Burger</button>
-</form>
 </div>
