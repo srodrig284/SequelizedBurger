@@ -26,9 +26,9 @@ module.exports = function(app) {
         // create takes an argument of an object describing the item we want to
         // insert into our table. In this case we just we pass in an object with a text
         // and complete property (req.body)
-       // console.log("burger name: ", req.body);
+         console.log("burger name: ", req.body);
         db.Burger.create({
-            burger_name: req.body.name
+            burger_name: req.body.burgername
         }).then(function(dbBurger) {
             // We have access to the new burger as an argument inside of the callback function
             res.redirect("/");
@@ -55,6 +55,5 @@ module.exports = function(app) {
         });
 
     });
-
 
 };

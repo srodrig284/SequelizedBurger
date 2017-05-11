@@ -11,23 +11,35 @@
             </div>
         </div>
     </div>
+<div class = "row">
+    <div class="col-xs-6">
+        <h3>Add a Burger</h3>
+        <form class="create-update-form" action="/api/addburger" method="POST">
+          <div class="form-group">
+            <label for="bn">Burger Name:</label>
+            <input type="text" id="bn" name="burgername" size="50">
+          </div>
+          <button class="btn btn-info type="submit">Add Burger</button>
+        </form>
+    </div>
 
-<h3>Add a Burger</h3>
-<form class="create-update-form" action="/api/addburger" method="POST">
-
-  <div class="form-group">
-    <label for="bn">Burger Name:</label>
-    <input type="text" id="bn" name="name" size="50">
-  </div>
-
-  <button class="btn btn-info type="submit">Add Burger</button>
-</form>
+    <div class="col-xs-6">
+        <h3>Add a Customer</h3>
+        <form class="create-update-form" action="/api/addcustomer" method="POST">
+          <div class="form-group">
+            <label for="cn">Customer Name:</label>
+            <input type="text" id="cn" name="customername" size="50">
+          </div>
+          <button class="btn btn-info type="submit">Add Customer</button>
+        </form>
+    </div>
+</div>
 
 <h3>Burgers that are ready to be devoured!</h3>
 <ul>
   {{#each burgers}}
     {{#unless this.devoured}}
-      <li>
+      <div>
         <h3>{{this.id}}. {{this.burger_name}}</h3>
 
         <form action="//api/update/{{this.id}}" method="POST">
@@ -39,13 +51,13 @@
           </div>
 
           <button class="btn btn-primary" type="submit">EAT THIS BURGER NOW!</button>
-          
+
         </form>
         <form action="/api/delete/{{this.id}}" method="POST">
           <input type="hidden" name="id" value="{{this.id}}">
           <button class="btn btn-danger" type="submit">DELETE this burger!</button>
         </form>
-      </li>
+      </div>
     {{/unless}}
   {{/each}}
 </ul>
