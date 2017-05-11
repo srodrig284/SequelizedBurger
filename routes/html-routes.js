@@ -18,12 +18,17 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
       // GET route for getting all of the burgers
           db.Burger.findAll({}).then(function(dbBurger) {
-              // We have access to the todos as an argument inside of the callback function
-              var hbsObject = {
-                  burgers: dbBurger
-              };
-              console.log(hbsObject);
-              res.render("index", hbsObject);
+              db.Customer.findAll({}).then(function(dbCustomer) {
+                  // We have access to the todos as an argument inside of the callback function
+                  // We have access to the todos as an argument inside of the callback function
+                  var hbsObject = {
+                      burgers: dbBurger,
+                      customers: dbCustomer
+                  };
+                  console.log(hbsObject);
+                  res.render("index", hbsObject);
+              });
+
           });
   });
 
