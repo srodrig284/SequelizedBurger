@@ -85,8 +85,7 @@
             <ul>
               {{#each burgers}}
                 {{#if this.devoured}}
-                  <li>
-                      {{inc @index}}. {{this.burger_name}}
+                    <h3>{{inc @index}}. {{this.burger_name}}</h3>
 
                     <form action="/api/update/{{this.id}}" method="POST">
                       <input type="hidden" name="devoured" value="false">
@@ -96,7 +95,6 @@
                       <input type="hidden" name="id" value="{{this.id}}">
                       <button class="btn btn-danger" type="submit">DELETE this burger!</button>
                     </form>
-                  </li>
                 {{/if}}
               {{/each}}
             </ul>

@@ -66,10 +66,6 @@ module.exports = function(app) {
         {
             customerID = req.body.CustomerId;
         }
-        else
-        {
-            customerID = null
-        }
         console.log("customerID = ", customerID);
 
         // We just have to specify which burger we want to update with "where"
