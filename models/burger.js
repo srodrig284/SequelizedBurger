@@ -33,7 +33,6 @@ module.exports = function(sequelize, DataTypes) {
                     // Can also simply do Task.belongsTo(models.User);
                     Burger.belongsTo(models.Customer,
                     {
-                        onDelete: "CASCADE",
                         foreignKey:
                             {
                                 allowNull: true

@@ -47,17 +47,20 @@
 
                     {{#if ../customers}}
                         <form action="/api/update/{{this.id}}" method="POST">
-                          <input type="hidden" name="devoured" value="true">
 
                           <div class="form-group">
+                            <input type="hidden" name="devoured" value="true">
                             <label for="category">Select Customer To Eat Burger:</label>
-            
+
+                            <div class="form-group">
                             <select class="form-control" id="customer" required="required" aria-required="true" style="width: 300px">
                               <option value="" disabled selected>Select a hungry customer</option>
                               {{#each ../customers}}
-                                  <option name="hungrycustomer" value={{../customers.id}}>{{../customers.customer_name}}</option>
+                                  <option value={{this.id}}>{{this.customer_name}}</option>
                               {{/each}}
                             </select>
+                                <input type="hidden" name="CustomerId" value={{this.id}}>
+                            </div>
 
                             <button class="btn btn-primary" type="submit">EAT THIS BURGER NOW!</button>
                           </div>

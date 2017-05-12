@@ -61,14 +61,17 @@ module.exports = function(app) {
     app.post("/api/update/:id", function(req, res) {
         var devoured_condition = req.body.devoured;
         var customerID;
+        console.log("devoured = ", req.body.devoured);
         if(req.body.devoured === true)
         {
-            customerID = req.body.hungrycustomer;
+            customerID = req.body.CustomerId;
         }
         else
         {
-            customerID = NULL;
+            customerID = null
         }
+        console.log("customerID = ", req.body.CustomerId);
+
         // We just have to specify which burger we want to update with "where"
         db.Burger.update({
             devoured: req.body.devoured,
