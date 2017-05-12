@@ -43,7 +43,7 @@
               {{#each burgers}}
                 {{#unless this.devoured}}
                   <div>
-                    <h3>{{@index}}. {{this.burger_name}}</h3>
+                    <h3>{{inc @index}}. {{this.burger_name}}</h3>
 
                     {{#if customers}}
                         <form action="/api/update/{{this.id}}" method="POST">
@@ -83,7 +83,7 @@
               {{#each burgers}}
                 {{#if this.devoured}}
                   <li>
-                      {{@index}}. {{this.burger_name}}
+                      {{inc @index}}. {{this.burger_name}}
 
                     <form action="/api/update/{{this.id}}" method="POST">
                       <input type="hidden" name="devoured" value="false">

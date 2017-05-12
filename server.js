@@ -32,6 +32,12 @@ app.use(express.static("./public"));
 
 // Set Handlebars.
 var exphbs = require("express-handlebars");
+var Handlebars = require('handlebars');
+
+Handlebars.registerHelper("inc", function(value, options)
+{
+    return parseInt(value) + 1;
+});
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
