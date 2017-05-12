@@ -55,13 +55,15 @@
                             <select class="form-control" id="customer" required="required" aria-required="true" style="width: 300px">
                               <option value="" disabled selected>Select a hungry customer</option>
                               {{#each customers}}
-                                  <option name="hungrycustomer" value={{id}}>{{customer_name}}</option>
+                                  <option name="hungrycustomer" value={{customer.id}}>{{customers.customer_name}}</option>
                               {{/each}}
                             </select>
 
                             <button class="btn btn-primary" type="submit">EAT THIS BURGER NOW!</button>
                           </div>
                         </form>
+                    {{else}}
+                        <h4>Add Customers in order to devour this burger</h4>
                     {{/if}}
 
 
