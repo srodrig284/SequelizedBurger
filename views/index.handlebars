@@ -19,7 +19,7 @@
                 <label for="bn">Burger Name:</label>
                 <input type="text" id="bn" name="burgername" size="50">
               </div>
-              <button class="btn btn-info type="submit">Add Burger</button>
+              <button class="btn btn-info" type="submit">Add Burger</button>
             </form>
         </div>
 
@@ -30,10 +30,11 @@
                 <label for="cn">Customer Name:</label>
                 <input type="text" id="cn" name="customername" size="50">
               </div>
-              <button class="btn btn-info type="submit">Add Customer</button>
+              <button class="btn btn-info" type="submit">Add Customer</button>
             </form>
         </div>
     </div>
+
 
     <div class = "row">
         <div class="col-xs-6">
@@ -42,19 +43,28 @@
               {{#each burgers}}
                 {{#unless this.devoured}}
                   <div>
-                    <h3>{{this.id}}. {{this.burger_name}}</h3>
+                    <h3>{{@index}}. {{this.burger_name}}</h3>
 
-                    <form action="//api/update/{{this.id}}" method="POST">
-                      <input type="hidden" name="devoured" value="true">
+                    {{#if customers}}
+                        <form action="/api/update/{{this.id}}" method="POST">
+                          <input type="hidden" name="devoured" value="true">
 
-                      <div class="form-group">
-                        <label for="category">Select Customer To Eat Burger:</label>
-                        <select class="form-control" id="customer" style="width: 300px"></select>
-                      </div>
+                          <div class="form-group">
+                            <label for="category">Select Customer To Eat Burger:</label>
 
-                      <button class="btn btn-primary" type="submit">EAT THIS BURGER NOW!</button>
+                            <select class="form-control" id="customer" required="required" aria-required="true" style="width: 300px">
+                              <option value="" disabled selected>Select a hungry customer</option>
+                              {{#each customers}}
+                                  <option name="hungrycustomer" value={{id}}>{{customer_name}}</option>
+                              {{/each}}
+                            </select>
 
-                    </form>
+                            <button class="btn btn-primary" type="submit">EAT THIS BURGER NOW!</button>
+                          </div>
+                        </form>
+                    {{/if}}
+
+
                     <form action="/api/delete/{{this.id}}" method="POST">
                       <input type="hidden" name="id" value="{{this.id}}">
                       <button class="btn btn-danger" type="submit">DELETE this burger!</button>
@@ -71,11 +81,11 @@
               {{#each burgers}}
                 {{#if this.devoured}}
                   <li>
-                    {{this.id}}. {{this.burger_name}}
+                      {{@index}}. {{this.burger_name}}
 
                     <form action="/api/update/{{this.id}}" method="POST">
                       <input type="hidden" name="devoured" value="false">
-                      <button class="btn btn-primary type="submit">PUT BURGER BACK ON MENU!</button>
+                      <button class="btn btn-primary" type="submit">PUT BURGER BACK ON MENU!</button>
                     </form>
                     <form action="/api/delete/{{this.id}}" method="POST">
                       <input type="hidden" name="id" value="{{this.id}}">

@@ -56,4 +56,31 @@ module.exports = function(app) {
 
     });
 
+    // UPDATE route for deleting burgers. We can get the id of the burger to be deleted from
+    // req.params.id
+    app.post("/api/update/:id", function(req, res) {
+        var devoured_condition = req.body.devoured;
+        var customerID;
+        if(req.body.devoured === true)
+        {
+            customerID = req.body.hungrycustomer;
+        }
+        else
+        {
+            customerID = NULL;
+        }
+        // We just have to specify which burger we want to update with "where"
+        db.Burger.update({
+            devoured: req.body.devoured,
+            CustomerId: customerID
+            },
+            {
+            where: {
+                id: req.params.id
+            }
+        }).then(function(dbBurger) {
+            res.redirect("/");
+        });
+
+    });
 };
