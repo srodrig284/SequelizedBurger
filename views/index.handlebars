@@ -53,13 +53,12 @@
                             <label for="category">Select Customer To Eat Burger:</label>
 
                             <div class="form-group">
-                            <select class="form-control" id="customer" required="required" aria-required="true" style="width: 300px">
+                            <select class="form-control" name="CustomerId" id="customer" required="required" aria-required="true" style="width: 300px">
                               <option value="" disabled selected>Select a hungry customer</option>
                               {{#each ../customers}}
                                   <option value={{this.id}}>{{this.customer_name}}</option>
                               {{/each}}
                             </select>
-                                <input type="hidden" name="CustomerId" value={{this.id}}>
                             </div>
 
                             <button class="btn btn-primary" type="submit">EAT THIS BURGER NOW!</button>

@@ -60,7 +60,7 @@ module.exports = function(app) {
     // req.params.id
     app.post("/api/update/:id", function(req, res) {
         var devoured_condition = req.body.devoured;
-        var customerID;
+        var customerID = "";
         console.log("devoured = ", req.body.devoured);
         if(req.body.devoured)
         {
