@@ -22,8 +22,8 @@
 - Create Burgers
 - In order to devour Burgers, you must create Customers
 - Select a customer to eat the burger
-- You can delete any burger
-- You can delete a customer.  This should delete all the burgers associated with this customer ***STILL WORKING ON MAKING THIS PART WORK***
+- You can delete any burger.  This will not delete a customer.
+- You can delete a customer.  When you delete a customer, all the burgers associated with this customer will also be deleted.
 - - -
 # *BON APPETIT*
 
