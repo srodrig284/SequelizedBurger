@@ -26,7 +26,6 @@ module.exports = function(app) {
         // create takes an argument of an object describing the item we want to
         // insert into our table. In this case we just we pass in an object with a text
         // and complete property (req.body)
-        console.log("customer name: ", req.body);
         db.Customer.create({
             customer_name: req.body.customername
         }).then(function(dbCustomer) {
@@ -42,38 +41,17 @@ module.exports = function(app) {
         });
     });
 
-    // DELETE route for deleting burgers. We can get the id of the burger to be deleted from
+    // DELETE route for deleting customers. We can get the id of the customers to be deleted from
     // req.params.id
-    app.post("/api/delete/:id", function(req, res) {
+    app.post("/api/deletecustomer", function(req, res) {
         // We just have to specify which burger we want to destroy with "where"
+        console.log("cust ID: ", req.body.customerID);
         db.Customer.destroy({
             where: {
-                id: req.params.id
+                id: req.body.customerID
             }
         }).then(function(dbCustomer) {
             res.redirect("/");
-        });
-
-    });
-
-    // POST route for saving a new customer
-    app.post("/api/addcustomer", function(req, res) {
-        // create takes an argument of an object describing the item we want to
-        // insert into our table. In this case we just we pass in an object with a text
-        // and complete property (req.body)
-        // console.log("burger name: ", req.body);
-        db.Customer.create({
-            customer_name: req.body.name
-        }).then(function(dbCustomer) {
-            // We have access to the new customer as an argument inside of the callback function
-            res.redirect("/");
-
-        }).catch(function  (error){
-            //console.log("Error Message = ", error.message);
-            return res.render('error', {
-                message: error.message,
-                error: error
-            });
         });
     });
 };

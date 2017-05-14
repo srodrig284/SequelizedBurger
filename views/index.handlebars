@@ -12,7 +12,7 @@
         </div>
     </div>
     <div class = "row">
-        <div class="col-xs-6">
+        <div class="col-md-4">
             <h3>Add a Burger</h3>
             <form class="create-update-form" action="/api/addburger" method="POST">
               <div class="form-group">
@@ -22,8 +22,7 @@
               <button class="btn btn-info" type="submit">Add Burger</button>
             </form>
         </div>
-
-        <div class="col-xs-6">
+        <div class="col-md-4">
             <h3>Add a Customer</h3>
             <form class="create-update-form" action="/api/addcustomer" method="POST">
               <div class="form-group">
@@ -33,10 +32,33 @@
               <button class="btn btn-info" type="submit">Add Customer</button>
             </form>
         </div>
+        {{#if customers}}
+            <div class="col-md-4">
+                <h3>Delete a Customer</h3>
+                <form action="/api/deletecustomer" method="POST">
+
+                    <div class="form-group">
+                        <label for="category">Select Customer To Delete:</label>
+                        <div class="form-group">
+                            <select class="form-control" name="customerID" value="{{this.id}} required="required" aria-required="true" style="width: 300px">
+                                <option value="" disabled selected>Select customer to delete</option>
+                                {{#each customers}}
+                                    <option value={{this.id}}>{{this.customer_name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <button class="btn btn-info" type="submit">Delete Customer</button>
+                    </div>
+                </form>
+            </div>
+        {{else}}
+            <div class="col-xs-4"></div>
+        {{/if}}
     </div>
 
 
     <div class = "row">
+        {{#if burgers}}
         <div class="col-xs-6">
         <h3>Burgers that are ready to be devoured!</h3>
             <ul>
@@ -46,7 +68,7 @@
                     <h3>{{inc @index}}. {{this.burger_name}}</h3>
 
                     {{#if ../customers}}
-                        <form action="/api/update/{{this.id}}" method="POST">
+                        <form action="/api/updateburger/{{this.id}}" method="POST">
 
                           <div class="form-group">
                             <input type="hidden" name="devoured" value="true">
@@ -69,7 +91,7 @@
                     {{/if}}
 
 
-                    <form action="/api/delete/{{this.id}}" method="POST">
+                    <form action="/api/deleteburger/{{this.id}}" method="POST">
                       <input type="hidden" name="id" value="{{this.id}}">
                       <button class="btn btn-danger" type="submit">DELETE this burger!</button>
                     </form>
@@ -86,7 +108,7 @@
                 {{#if this.devoured}}
                     <h3>{{inc @index}}. {{this.burger_name}}</h3>
 
-                    <form action="/api/update/{{this.id}}" method="POST">
+                    <form action="/api/updateburger/{{this.id}}" method="POST">
                       <input type="hidden" name="devoured" value="false">
                       <button class="btn btn-primary" type="submit">PUT BURGER BACK ON MENU!</button>
                     </form>
@@ -98,5 +120,9 @@
               {{/each}}
             </ul>
         </div>
+        {{else}}
+            <h3>No Burgers available.</h3>
+            <h4>Add Burgers. In order to devour Burgers you must add Customers.</h4>
+        {{/if}}
     </div>
 </div>

@@ -44,7 +44,7 @@ module.exports = function(app) {
 
     // DELETE route for deleting burgers. We can get the id of the burger to be deleted from
     // req.params.id
-    app.post("/api/delete/:id", function(req, res) {
+    app.post("/api/deleteburger/:id", function(req, res) {
         // We just have to specify which burger we want to destroy with "where"
         db.Burger.destroy({
             where: {
@@ -58,7 +58,7 @@ module.exports = function(app) {
 
     // UPDATE route for deleting burgers. We can get the id of the burger to be deleted from
     // req.params.id
-    app.post("/api/update/:id", function(req, res) {
+    app.post("/api/updateburger/:id", function(req, res) {
         var devoured_condition = req.body.devoured;
         var customerID = "";
         console.log("devoured = ", req.body.devoured);
